@@ -13,8 +13,8 @@ body {
 	background:#1E392A;
 	color:white;
 	padding:10px;
-
 }
+
 .box p {
 	font size:"13";
 	color:#1E392A;
@@ -24,31 +24,30 @@ body {
 .box {
 	background: #3CC47C;
 	text-align: center;
-	box-shadow: 10px 5px 5px black;
+	box-shadow: 0px 5px 5px grey;
+	transition: .2s;
 }
 
-.linkBar {
-	border: 2px solid #1E392A;
-	background: #3CC47C;
-	margin-top: 7px;
-	text-align: center;
-	box-shadow: 10px 5px 5px black;
+.box:hover {
+	box-shadow: 0px 10px 5px grey;
+	transition: .2s;
 }
 
 img {
 	margin-top: 50px;
 	margin-left: 10px;
-	box-shadow: -10px 5px 5px black;
+	box-shadow: 0px 5px 5px black;
 }
 
 .info {
 	border: 2px solid #1E392A;
+	color: #828081;
 	float: right;
 	width: 300px;
-	margin-top: 5px; 
+	margin-top: 15px; 
 	padding: 10px; 
 	div-align: right;
-	box-shadow: 10px 5px 5px black;
+	box-shadow: 5px 5px 5px rgba(0,0,0,.5);
 }
 
 a:visited { text-decoration: none; color:#1E392A;} 
