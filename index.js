@@ -1,13 +1,16 @@
 function main()
 {
-	
+	let repos=["warframe-telegram-bot","art-studio","metoothanks-ext","one-input-game"];
+
+	for(let i=0;i<repos.length;i++) {
+		GetRepoInfo(repos[i],i);
+	}
 }
 
-$(document).ready(main)
-
-function GetRepoInfo(string)
+function GetRepoInfo(string,index)
 {
-	var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+	let columns=3;
+	let Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
 	encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length)
 	{n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|
 		i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+
@@ -24,6 +27,16 @@ function GetRepoInfo(string)
 							t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);
 								n+=3}}return t}}
 	 $.get("https://api.github.com/repos/ngoldstein51/"+string+"/readme", (data, status)=>{
-        $("#repo").html(Base64.decode(data.content));
-    });
+	 	let newRepo = document.createElement("div");
+	 	newRepo.className="repo";
+	 	newRepo.id="#repo"+index;
+        newRepo.innerHTML="<h3>"+string+"</h3><text>"+Base64.decode(data.content).replace("\n"," ").split(' ').slice(2).join(' ')+"</text>";
+        newRepo.onclick=function(){
+        	window.location.href = "https://github.com/ngoldstein51/"+string;
+        };
+        //newRepo.style="grid-column-start: "+((index%columns)+1)+"; grid-row-start: "+(Math.floor(index/columns)+1)+";";
+	 	document.getElementById("repoContainer").append(newRepo);
+	});
 }
+
+$(document).ready(main)
